@@ -108,7 +108,7 @@ st.markdown(
         }}
         h1, h2, h3, h4, h5, h6 {{
             background: rgba(0, 0, 0, 0.93) !important;
-            padding: 10px;
+            padding: 100px;
             display: inline-block;
             border-radius: 10px;
         }}
