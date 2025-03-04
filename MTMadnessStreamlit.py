@@ -1,6 +1,7 @@
 import requests
 import random
 import streamlit as st
+from rapidfuzz import fuzz
 
 # GitHub repository URL for the directory
 repo_url = "https://api.github.com/repos/CallumBotha/MTMadness80s/contents/Question1"
