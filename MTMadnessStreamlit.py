@@ -248,7 +248,7 @@ if submit_all:
     st.markdown("\n### Review of your answers:")
 
     # Function to style text with a black background
-    def styled_text(text, font_size = "20px", font_weight = "bold", color="white", padding = "20px", background="rgba(0, 0, 0, 0.93)", margin_top="-50px", margin_bottom="-50px"):
+    def styled_text(text, font_size = "20px", font_weight = "bold", color="white", padding = "60px", background="rgba(0, 0, 0, 0.93)", margin_top="-50px", margin_bottom="-50px"):
         return f"""
         <div style="
             font-size: {font_size};
