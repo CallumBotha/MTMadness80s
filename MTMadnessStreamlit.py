@@ -4,14 +4,6 @@ import os
 from rapidfuzz import fuzz
 import streamlit as st
 
-# Set the Streamlit page configuration
-st.set_page_config(
-    page_title="Music Trivia Madness",
-    layout="wide",
-    page_icon="🎵",
-    initial_sidebar_state="collapsed"
-)
-
 input_folder = "https://github.com/CallumBotha/MTMadness80s/tree/main/Question1"
 output_folder = "https://github.com/CallumBotha/MTMadness80s/tree/main/Question1/Question1Trimmed"
 
@@ -35,51 +27,15 @@ for filename in input_folder:
                 'full_file': original_file_url,  # Full song URL
                 'trimmed_file': trimmed_file_url  # Trimmed song URL
             })
-# Example output of the music data list
-for song in music_data:
-    print(song)
 
+# Set the Streamlit page configuration
+st.set_page_config(
+    page_title="Music Trivia Madness",
+    layout="wide",
+    page_icon="🎵",
+    initial_sidebar_state="collapsed"
+)
 
-
-# Display your headings, questions, and answers here
-st.title("Music Trivia Madness!")
-st.subheader("Guess the song and artist")
-st.write("Answer the following questions by selecting the correct artist and song from the list below.")
-
-# Example of your questions and answer boxes
-question_1 = st.radio("Question 1: Who sings 'Song A'?", ["Artist A", "Artist B", "Artist C"])
-question_2 = st.radio("Question 2: Who sings 'Song B'?", ["Artist D", "Artist E", "Artist F"])
-
-# Display the questions and answers
-st.write("Your answers: ")
-st.write(f"Question 1: {question_1}")
-st.write(f"Question 2: {question_2}")
-
-# Display songs and allow users to play them
-if music_data:
-    for song_info in music_data:
-        song_name = song_info['song']
-        artist_name = song_info['artist']
-        trimmed_file_url = song_info['trimmed_file']
-
-        # Display song name and artist
-        st.subheader(f"{song_name} by {artist_name}")
-        
-        # Display audio player for the full song
-        st.audio(trimmed_file_url, format="audio/mp3", start_time=0)
-        st.write("Trimmed version (Full song)")
-
-else:
-    st.error("Failed to retrieve music files from GitHub. Check folder path or API rate limits.")
-
-# Ensure at least 5 songs before sampling
-if len(music_data) >= 5:
-    st.session_state.selected_songs = random.sample(music_data, 5)
-else:
-    st.session_state.selected_songs = music_data  # Use all available songs
-
-# Custom CSS for styling
-#background_url = "https://i.pinimg.com/1200x/01/9a/f5/019af5b99acc623a0dae65d4221dd33a.jpg"
 background_url = "https://i.ibb.co/bRH8S1fr/A-seamless-sticker-bomb-collage-inspired-by-80s-music-culture-designed-like-retro-gift-wrap-Features.jpg"
 # Custom CSS for styling
 # Custom CSS for styling, including hiding anchor tags
