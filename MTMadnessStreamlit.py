@@ -1,34 +1,47 @@
 import random
+import requests
 import os
 #from pydub import AudioSegment
 from rapidfuzz import fuzz
 import streamlit as st
 
-# Set the working directory
-base_dir = "https://github.com/CallumBotha/MTMadness80s/tree/main"
-input_folder = "https://github.com/CallumBotha/MTMadness80s/tree/main/Question1"
-output_folder = "https://github.com/CallumBotha/MTMadness80s/tree/main/Question1/Question1Trimmed"
+# GitHub repository details
+GITHUB_REPO = "CallumBotha/MTMadness80s"
+BRANCH = "main"
+FOLDER_PATH = "Question1/Question1Trimmed"
 
-# Set FFmpeg path
-# AudioSegment.converter = "C:/Users/callu/Desktop/ffmpeg/bin/ffmpeg.exe"
+# GitHub API URL to get file list
+GITHUB_API_URL = f"https://api.github.com/repos/{GITHUB_REPO}/contents/{FOLDER_PATH}?ref={BRANCH}"
 
-# Desired duration in milliseconds (15 seconds)
-# desired_duration = 15 * 1000
-
-# Process files
+# Fetch the file list
+response = requests.get(GITHUB_API_URL)
 music_data = []
-for filename in os.listdir(output_folder):
-    if filename.endswith('.mp3'):
-        artist_song = filename.replace('.mp3', '').split(' - ')
-        if len(artist_song) == 2:
-            artist_name, song_name = artist_song
-            original_file = os.path.join(input_folder, filename)  # Full song
 
-            music_data.append({
-                'song': song_name,
-                'artist': artist_name,
-                'full_file': original_file  # Full version (no trimming)
-            })
+if response.status_code == 200:
+    files = response.json()  # GitHub API returns a list of file metadata
+    for file in files:
+        if file["name"].endswith(".mp3"):
+            artist_song = file["name"].replace(".mp3", "").split(" - ")
+            if len(artist_song) == 2:
+                artist_name, song_name = artist_song
+                file_url = file["download_url"]  # Direct MP3 file link
+                
+                music_data.append({
+                    "song": song_name,
+                    "artist": artist_name,
+                    "full_file": file_url  # URL to the song file
+                })
+else:
+    st.error("Failed to retrieve music files from GitHub. Check folder path or API rate limits.")
+
+# Debugging output (Remove this later)
+st.write(f"Music data length: {len(music_data)}")
+
+# Ensure at least 5 songs before sampling
+if len(music_data) >= 5:
+    st.session_state.selected_songs = random.sample(music_data, 5)
+else:
+    st.session_state.selected_songs = music_data  # Use all available songs
 
 # Streamlit components to display trivia game
 st.set_page_config(page_title="Music Trivia Madness", layout="wide", page_icon="🎵", initial_sidebar_state="collapsed")
