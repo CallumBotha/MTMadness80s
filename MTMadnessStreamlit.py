@@ -19,7 +19,7 @@ BRANCH = "main"
 FOLDER_PATH = "Question1/Question1Trimmed"
 
 # GitHub API URL to get file list
-GITHUB_API_URL = f"https://api.github.com/repos/{GITHUB_REPO}/contents/{FOLDER_PATH}?ref={BRANCH}"
+GITHUB_API_URL = f"https://api.github.com/repos/{GITHUB_REPO}/contents/{FOLDER_PATH}"
 
 # Fetch the file list
 response = requests.get(GITHUB_API_URL)
