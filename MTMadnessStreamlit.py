@@ -17,7 +17,7 @@ output_folder = "https://github.com/CallumBotha/MTMadness80s/tree/main/Question1
 
 music_data = []
 
-for filename in input_folder
+for filename in input_folder:
     if filename.endswith('.mp3'):
         artist_song = filename.replace('.mp3', '').split(' - ')
         if len(artist_song) == 2:
