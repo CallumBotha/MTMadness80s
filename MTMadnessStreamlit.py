@@ -5,6 +5,14 @@ import os
 from rapidfuzz import fuzz
 import streamlit as st
 
+# ✅ Move this to the very top!
+st.set_page_config(
+    page_title="Music Trivia Madness",
+    layout="wide",
+    page_icon="🎵",
+    initial_sidebar_state="collapsed"
+)
+
 # GitHub repository details
 GITHUB_REPO = "CallumBotha/MTMadness80s"
 BRANCH = "main"
@@ -34,17 +42,11 @@ if response.status_code == 200:
 else:
     st.error("Failed to retrieve music files from GitHub. Check folder path or API rate limits.")
 
-# Debugging output (Remove this later)
-st.write(f"Music data length: {len(music_data)}")
-
 # Ensure at least 5 songs before sampling
 if len(music_data) >= 5:
     st.session_state.selected_songs = random.sample(music_data, 5)
 else:
     st.session_state.selected_songs = music_data  # Use all available songs
-
-# Streamlit components to display trivia game
-st.set_page_config(page_title="Music Trivia Madness", layout="wide", page_icon="🎵", initial_sidebar_state="collapsed")
 
 # Custom CSS for styling
 #background_url = "https://i.pinimg.com/1200x/01/9a/f5/019af5b99acc623a0dae65d4221dd33a.jpg"
