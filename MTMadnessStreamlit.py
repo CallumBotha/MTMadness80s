@@ -5,7 +5,7 @@ import os
 from rapidfuzz import fuzz
 import streamlit as st
 
-# ✅ Move this to the top to fix the Streamlit error
+# Set the Streamlit page configuration
 st.set_page_config(
     page_title="Music Trivia Madness",
     layout="wide",
@@ -21,7 +21,7 @@ FOLDER_PATH = "Question1/Question1Trimmed"
 # GitHub API URL to get file list
 GITHUB_API_URL = f"https://api.github.com/repos/{GITHUB_REPO}/contents/{FOLDER_PATH}"
 
-# Fetch the file list
+# Fetch the file list from GitHub repository
 response = requests.get(GITHUB_API_URL)
 music_data = []
 
@@ -32,12 +32,12 @@ if response.status_code == 200:
             artist_song = file["name"].replace(".mp3", "").split(" - ")
             if len(artist_song) == 2:
                 artist_name, song_name = artist_song
-                trimmed_file_url = file["download_url"]  # ✅ Correct URL for trimmed files
+                trimmed_file_url = file["download_url"]
                 
                 music_data.append({
                     "song": song_name,
                     "artist": artist_name,
-                    "trimmed_file": trimmed_file_url  # ✅ Now always exists
+                    "trimmed_file": trimmed_file_url  # Correct URL for the trimmed files
                 })
 else:
     st.error("Failed to retrieve music files from GitHub. Check folder path or API rate limits.")
