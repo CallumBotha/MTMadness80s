@@ -1,11 +1,8 @@
 import random
 import requests
 import os
-#from pydub import AudioSegment
 from rapidfuzz import fuzz
 import streamlit as st
-
-
 
 # Set the Streamlit page configuration
 st.set_page_config(
@@ -49,12 +46,33 @@ if response.status_code == 200:
                     "trimmed_file": trimmed_file_url,  # Direct trimmed song URL
                 })
 
-                # Display song name and artist
-                st.subheader(f"{song_name} by {artist_name}")
-                
-                # Display audio player for the full song
-                st.audio(trimmed_file_url, format="audio/mp3", start_time=0)
-                st.write("Trimmed version (Full song)")
+# Display your headings, questions, and answers here
+st.title("Music Trivia Madness!")
+st.subheader("Guess the song and artist")
+st.write("Answer the following questions by selecting the correct artist and song from the list below.")
+
+# Example of your questions and answer boxes
+question_1 = st.radio("Question 1: Who sings 'Song A'?", ["Artist A", "Artist B", "Artist C"])
+question_2 = st.radio("Question 2: Who sings 'Song B'?", ["Artist D", "Artist E", "Artist F"])
+
+# Display the questions and answers
+st.write("Your answers: ")
+st.write(f"Question 1: {question_1}")
+st.write(f"Question 2: {question_2}")
+
+# Display songs and allow users to play them
+if music_data:
+    for song_info in music_data:
+        song_name = song_info['song']
+        artist_name = song_info['artist']
+        trimmed_file_url = song_info['trimmed_file']
+
+        # Display song name and artist
+        st.subheader(f"{song_name} by {artist_name}")
+        
+        # Display audio player for the full song
+        st.audio(trimmed_file_url, format="audio/mp3", start_time=0)
+        st.write("Trimmed version (Full song)")
 
 else:
     st.error("Failed to retrieve music files from GitHub. Check folder path or API rate limits.")
