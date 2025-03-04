@@ -18,7 +18,7 @@ os.makedirs(output_folder, exist_ok=True)
 
 # Process files
 music_data = []
-for filename in os.listdir(input_folder):
+for filename in os.listdir(output_folder):
     if filename.endswith('.mp3'):
         artist_song = filename.replace('.mp3', '').split(' - ')
         if len(artist_song) == 2:
