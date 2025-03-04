@@ -6,6 +6,14 @@ import streamlit as st
 # GitHub repository URL for the directory
 repo_url = "https://api.github.com/repos/CallumBotha/MTMadness80s/contents/Question1"
 
+# Set the Streamlit page configuration
+st.set_page_config(
+    page_title="Music Trivia Madness",
+    layout="wide",
+    page_icon="🎵",
+    initial_sidebar_state="collapsed"
+)
+
 # Function to get files from the GitHub repository
 def get_file_list(url):
     response = requests.get(url)
@@ -39,15 +47,6 @@ for filename in file_list:
 
 # Display the music data in Streamlit
 st.write(music_data)
-
-
-# Set the Streamlit page configuration
-st.set_page_config(
-    page_title="Music Trivia Madness",
-    layout="wide",
-    page_icon="🎵",
-    initial_sidebar_state="collapsed"
-)
 
 background_url = "https://i.ibb.co/bRH8S1fr/A-seamless-sticker-bomb-collage-inspired-by-80s-music-culture-designed-like-retro-gift-wrap-Features.jpg"
 # Custom CSS for styling
