@@ -11,10 +11,10 @@ output_folder = os.path.join(input_folder, 'Question1Trimmed')
 os.makedirs(output_folder, exist_ok=True)
 
 # Set FFmpeg path
-AudioSegment.converter = "C:/Users/callu/Desktop/ffmpeg/bin/ffmpeg.exe"
+# AudioSegment.converter = "C:/Users/callu/Desktop/ffmpeg/bin/ffmpeg.exe"
 
 # Desired duration in milliseconds (15 seconds)
-desired_duration = 15 * 1000
+# desired_duration = 15 * 1000
 
 # Process files
 music_data = []
