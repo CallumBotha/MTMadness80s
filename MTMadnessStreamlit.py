@@ -45,9 +45,6 @@ for filename in file_list:
         'trimmed_file': trimmed_file_url
     })
 
-# Display the music data in Streamlit
-st.write(music_data)
-
 background_url = "https://i.ibb.co/bRH8S1fr/A-seamless-sticker-bomb-collage-inspired-by-80s-music-culture-designed-like-retro-gift-wrap-Features.jpg"
 # Custom CSS for styling
 # Custom CSS for styling, including hiding anchor tags
