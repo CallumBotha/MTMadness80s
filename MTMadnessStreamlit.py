@@ -5,8 +5,7 @@ import os
 from rapidfuzz import fuzz
 import streamlit as st
 
-import requests
-import streamlit as st
+
 
 # Set the Streamlit page configuration
 st.set_page_config(
@@ -46,9 +45,17 @@ if response.status_code == 200:
                 music_data.append({
                     "song": song_name,
                     "artist": artist_name,
-                    "trimmed_file": trimmed_file_url,
-                    "full_file": full_file_url  # Full file URL pointing to the GitHub directory
+                    "full_file": full_file_url,  # Full file URL pointing to GitHub
+                    "trimmed_file": trimmed_file_url,  # Direct trimmed song URL
                 })
+
+                # Display song name and artist
+                st.subheader(f"{song_name} by {artist_name}")
+                
+                # Display audio player for the full song
+                st.audio(trimmed_file_url, format="audio/mp3", start_time=0)
+                st.write("Trimmed version (Full song)")
+
 else:
     st.error("Failed to retrieve music files from GitHub. Check folder path or API rate limits.")
 
