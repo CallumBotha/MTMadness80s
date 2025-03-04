@@ -1,32 +1,45 @@
-import random
 import requests
 import os
 from rapidfuzz import fuzz
 import streamlit as st
 
-input_folder = "https://github.com/CallumBotha/MTMadness80s/tree/main/Question1"
-output_folder = "https://github.com/CallumBotha/MTMadness80s/tree/main/Question1/Question1Trimmed"
+# GitHub repository URL for the directory
+repo_url = "https://api.github.com/repos/CallumBotha/MTMadness80s/contents/Question1"
 
+# Function to get files from the GitHub repository
+def get_file_list(url):
+    response = requests.get(url)
+    if response.status_code == 200:
+        # Parse the JSON response and extract file names
+        files = response.json()
+        return [file['name'] for file in files if file['name'].endswith('.mp3')]
+    else:
+        st.error("Failed to fetch files from GitHub repository.")
+        return []
+
+# Get the list of .mp3 files
+file_list = get_file_list(repo_url)
+
+# Prepare the music data
 music_data = []
 
-for filename in input_folder:
-    if filename.endswith('.mp3'):
-        artist_song = filename.replace('.mp3', '').split(' - ')
-        if len(artist_song) == 2:
-            artist_name, song_name = artist_song
-            original_file_url = f"{input_folder}/{filename}"  # Full song URL
-            trimmed_file_url = f"{output_folder}/{filename}"  # Trimmed song URL
+for filename in file_list:
+    song_name = filename.split('.')[0]  # Extract song name from filename
+    artist_name = "Unknown"  # Replace with actual extraction logic if needed
 
-            response = requests.head(trimmed_file_url)  # Check if the trimmed file exists on GitHub
-            if response.status_code != 200:
-                # If the file doesn't exist, you could flag or log it, but no trimming is done here.
-                print(f"Trimmed version of {filename} not found!")
-            music_data.append({
-                'song': song_name,
-                'artist': artist_name,
-                'full_file': original_file_url,  # Full song URL
-                'trimmed_file': trimmed_file_url  # Trimmed song URL
-            })
+    original_file_url = f"https://raw.githubusercontent.com/CallumBotha/MTMadness80s/main/Question1/{filename}"
+    trimmed_file_url = f"https://raw.githubusercontent.com/CallumBotha/MTMadness80s/main/Question1/Question1Trimmed/{filename}"
+
+    music_data.append({
+        'song': song_name,
+        'artist': artist_name,
+        'full_file': original_file_url,
+        'trimmed_file': trimmed_file_url
+    })
+
+# Display the music data in Streamlit
+st.write(music_data)
+
 
 # Set the Streamlit page configuration
 st.set_page_config(
