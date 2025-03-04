@@ -63,7 +63,7 @@ st.markdown(
         }}
         .stMarkdown {{
             color: white !important;
-            padding: 00px;
+            padding: 00px !important;
             margin-left: 10px;
             margin-right: 10px;
             margin-top: 50px;
@@ -73,8 +73,8 @@ st.markdown(
         .stTextInput {{
             background: rgba(0, 0, 0, 0.93) !important;
             color: white !important;
-            padding: 20px;
-            padding-top: 3px;
+            padding: 20px !important;
+            padding-top: 3px !important;
             margin-left: 10px;
             margin-right: 10px;
             margin-top: 5px;
@@ -85,10 +85,10 @@ st.markdown(
         }}
         .stAudio {{
             background: rgba(0, 0, 0, 0.93) !important;
-            padding-left: 10px;
-            padding-right: 10px;
-            padding-top: 10px;
-            padding-bottom: 10px;
+            padding-left: 10px !important;
+            padding-right: 10px !important;
+            padding-top: 10px !important;
+            padding-bottom: 10px !important;
             margin-left: 10px;
             margin-right: 10px;
             margin-top: 10px;
@@ -97,10 +97,10 @@ st.markdown(
         }}
         .stButton {{
             background: rgba(0, 0, 0, 0.93) !important;
-            padding-left: 5px;
-            padding-right: 5px;
-            padding-top: 5px;
-            padding-bottom: 5px;
+            padding-left: 5px !important;
+            padding-right: 5px !important;
+            padding-top: 5px !important;
+            padding-bottom: 5px !important;
             margin-left: 10px;
             margin-right: 10px;
             margin-top: 0px;
@@ -108,7 +108,7 @@ st.markdown(
         }}
         h1, h2, h3, h4, h5, h6 {{
             background: rgba(0, 0, 0, 0.93) !important;
-            padding: 10px;
+            padding: 10px !important;
             display: inline-block;
             border-radius: 10px;
         }}
