@@ -63,7 +63,7 @@ st.markdown(
         }}
         .stMarkdown {{
             color: white !important;
-            padding: 20px;
+            padding: 00px;
             margin-left: 10px;
             margin-right: 10px;
             margin-top: 50px;
@@ -73,9 +73,7 @@ st.markdown(
         .stTextInput {{
             background: rgba(0, 0, 0, 0.93) !important;
             color: white !important;
-            padding-left: 11px;
-            padding-right: 11px;
-            padding-bottom: 11px;
+            padding: 20px;
             padding-top: 3px;
             margin-left: 10px;
             margin-right: 10px;
