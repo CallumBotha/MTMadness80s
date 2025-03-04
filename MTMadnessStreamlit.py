@@ -6,8 +6,8 @@ import streamlit as st
 
 # Set the working directory
 base_dir = "https://github.com/CallumBotha/MTMadness80s/tree/main"
-input_folder = os.path.join(base_dir, 'Question1')
-output_folder = os.path.join(input_folder, 'Question1Trimmed')
+input_folder = "https://github.com/CallumBotha/MTMadness80s/tree/main/Question1"
+output_folder = "https://github.com/CallumBotha/MTMadness80s/tree/main/Question1/Question1Trimmed"
 os.makedirs(output_folder, exist_ok=True)
 
 # Set FFmpeg path
