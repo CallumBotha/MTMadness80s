@@ -54,7 +54,7 @@ st.markdown(
         }}
         .stApp {{
             background: none !important;
-            padding: 20px;
+            padding: 90px;
             border-radius: 10px;
             margin-right: 10px;
             margin-left: 10px;
