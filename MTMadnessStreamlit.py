@@ -169,7 +169,7 @@ for idx, entry in enumerate(selected_songs):
     st.write(f"### Question {idx + 1}")
 
     # Display the 15-second preview for trivia
-    if os.path.exists(trimmed_file_path):
+    if requests.head(trimmed_file_path):
         st.audio(trimmed_file_path)
 
     # Ask for the song's name with a unique key
@@ -329,7 +329,7 @@ if submit_all:
         full_song_file = response.get('full_file')
 
         # Check if full song file is present before displaying
-        if full_song_file and os.path.exists(full_song_file):
+        if full_song_file and requests.head(full_song_file):
             st.audio(full_song_file)
         else:
             st.markdown("Full song not available.")
