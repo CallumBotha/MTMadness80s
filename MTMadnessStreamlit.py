@@ -12,39 +12,41 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# GitHub repository details
-GITHUB_REPO = "CallumBotha/MTMadness80s"
-BRANCH = "main"
-FOLDER_PATH = "Question1/Question1Trimmed"
+input_folder = "https://github.com/CallumBotha/MTMadness80s/tree/main/Question1"
+output_folder = "https://github.com/CallumBotha/MTMadness80s/tree/main/Question1/Question1Trimmed"
 
-# GitHub API URL to get file list
-GITHUB_API_URL = f"https://api.github.com/repos/{GITHUB_REPO}/contents/{FOLDER_PATH}"
-
-# Base URL for the full files
-BASE_URL = f"https://github.com/{GITHUB_REPO}/tree/{BRANCH}/{FOLDER_PATH}"
-
-# Fetch the file list from GitHub repository
-response = requests.get(GITHUB_API_URL)
 music_data = []
 
-if response.status_code == 200:
-    files = response.json()  # GitHub API returns a list of file metadata
-    for file in files:
-        if file["name"].endswith(".mp3"):
-            artist_song = file["name"].replace(".mp3", "").split(" - ")
-            if len(artist_song) == 2:
-                artist_name, song_name = artist_song
-                trimmed_file_url = file["download_url"]
-                
-                # Construct the URL for the full file in the GitHub repository
-                full_file_url = f"{BASE_URL}/{file['name']}"  # Full file URL
+# GitHub API URL to get contents of the folder
+repo_api_url = "https://api.github.com/repos/CallumBotha/MTMadness80s/contents/Question1"
+# Send GET request to GitHub API to fetch file names in the folder
+response = requests.get(repo_api_url)
+files = response.json()
 
-                music_data.append({
-                    "song": song_name,
-                    "artist": artist_name,
-                    "full_file": full_file_url,  # Full file URL pointing to GitHub
-                    "trimmed_file": trimmed_file_url,  # Direct trimmed song URL
-                })
+# Iterate through files and filter out mp3 files
+for file in files:
+    if file['name'].endswith('.mp3'):  # Only process mp3 files
+        filename = file['name']
+        artist_song = filename.replace('.mp3', '').split(' - ')
+
+        if len(artist_song) == 2:
+            artist_name, song_name = artist_song
+
+            # Construct the URLs for the full and trimmed versions
+            original_file_url = os.path.join(input_folder, filename)  # Full song
+            trimmed_file_url = os.path.join(output_folder, filename)  # Trimmed song
+
+            # Add the song data to the list
+            music_data.append({
+                'song': song_name,
+                'artist': artist_name,
+                'full_file': original_file_url,  # Full version URL
+                'trimmed_file': trimmed_file_url  # Trimmed version URL
+            })
+
+# Example output of the music data list
+for song in music_data:
+    print(song)
 
 # Display your headings, questions, and answers here
 st.title("Music Trivia Madness!")
