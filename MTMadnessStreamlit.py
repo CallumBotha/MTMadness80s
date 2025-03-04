@@ -17,36 +17,29 @@ output_folder = "https://github.com/CallumBotha/MTMadness80s/tree/main/Question1
 
 music_data = []
 
-# GitHub API URL to get contents of the folder
-repo_api_url = "https://api.github.com/repos/CallumBotha/MTMadness80s/contents/Question1"
-# Send GET request to GitHub API to fetch file names in the folder
-response = requests.get(repo_api_url)
-files = response.json()
-
-# Iterate through files and filter out mp3 files
-for file in files:
-    if file['name'].endswith('.mp3'):  # Only process mp3 files
-        filename = file['name']
+for filename in input_folder
+    if filename.endswith('.mp3'):
         artist_song = filename.replace('.mp3', '').split(' - ')
-
         if len(artist_song) == 2:
             artist_name, song_name = artist_song
+            original_file_url = f"{input_folder}/{filename}"  # Full song URL
+            trimmed_file_url = f"{output_folder}/{filename}"  # Trimmed song URL
 
-            # Construct the URLs for the full and trimmed versions
-            original_file_url = os.path.join(input_folder, filename)  # Full song
-            trimmed_file_url = os.path.join(output_folder, filename)  # Trimmed song
-
-            # Add the song data to the list
+            response = requests.head(trimmed_file_url)  # Check if the trimmed file exists on GitHub
+            if response.status_code != 200:
+                # If the file doesn't exist, you could flag or log it, but no trimming is done here.
+                print(f"Trimmed version of {filename} not found!")
             music_data.append({
                 'song': song_name,
                 'artist': artist_name,
-                'full_file': original_file_url,  # Full version URL
-                'trimmed_file': trimmed_file_url  # Trimmed version URL
+                'full_file': original_file_url,  # Full song URL
+                'trimmed_file': trimmed_file_url  # Trimmed song URL
             })
-
 # Example output of the music data list
 for song in music_data:
     print(song)
+
+
 
 # Display your headings, questions, and answers here
 st.title("Music Trivia Madness!")
