@@ -35,13 +35,6 @@ for filename in file_list:
         'trimmed_file': trimmed_file_url
     })
 
-# Check if music_data has content before sampling
-if music_data:
-    # Select 5 random songs from the list
-    st.session_state.selected_songs = random.sample(music_data, 5)
-    st.write(st.session_state.selected_songs)
-else:
-    st.warning("No songs available to select.")
 
 background_url = "https://i.ibb.co/bRH8S1fr/A-seamless-sticker-bomb-collage-inspired-by-80s-music-culture-designed-like-retro-gift-wrap-Features.jpg"
 # Custom CSS for styling
