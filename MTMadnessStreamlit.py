@@ -18,26 +18,26 @@ desired_duration = 15 * 1000
 
 # Process files
 music_data = []
-for filename in os.listdir(input_folder):
-    if filename.endswith('.mp3'):
-        artist_song = filename.replace('.mp3', '').split(' - ')
-        if len(artist_song) == 2:
-            artist_name, song_name = artist_song
-            original_file = os.path.join(input_folder, filename)  # Full song
-            trimmed_file = os.path.join(output_folder, filename)  # Trimmed song
+#for filename in os.listdir(input_folder):
+ #   if filename.endswith('.mp3'):
+  #      artist_song = filename.replace('.mp3', '').split(' - ')
+   #     if len(artist_song) == 2:
+    #        artist_name, song_name = artist_song
+     #       original_file = os.path.join(input_folder, filename)  # Full song
+      #      trimmed_file = os.path.join(output_folder, filename)  # Trimmed song
 
             # Trim the audio if not already trimmed
-            if not os.path.exists(trimmed_file):
-                audio = AudioSegment.from_mp3(original_file)
-                trimmed_audio = audio[:desired_duration]  # Keep only first 15s
-                trimmed_audio.export(trimmed_file, format="mp3")
+       #     if not os.path.exists(trimmed_file):
+        #        audio = AudioSegment.from_mp3(original_file)
+         #       trimmed_audio = audio[:desired_duration]  # Keep only first 15s
+          #      trimmed_audio.export(trimmed_file, format="mp3")
 
-            music_data.append({
-                'song': song_name,
-                'artist': artist_name,
-                'full_file': original_file,  # Full version
-                'trimmed_file': trimmed_file  # 15-sec version
-            })
+           # music_data.append({
+            #    'song': song_name,
+             #   'artist': artist_name,
+              #  'full_file': original_file,  # Full version
+               # 'trimmed_file': trimmed_file  # 15-sec version
+           # })
 
 # Streamlit components to display trivia game
 st.set_page_config(page_title="Music Trivia Madness", layout="wide", page_icon="🎵", initial_sidebar_state="collapsed")
