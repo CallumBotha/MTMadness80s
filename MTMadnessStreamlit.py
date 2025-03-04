@@ -238,7 +238,7 @@ if submit_all:
 
     # Display final score
     def styled_text(text, color="white", background="rgba(0, 0, 0, 0.93)", margin_top="1px", margin_bottom="-100px", font_size="40px"):
-        return f'<p style="background-color:{background}; color:{color}; padding:8px; border-radius:10px; margin-top:{margin_top}; margin-bottom:{margin_bottom}; font-size:{font_size};">{text}</p>'
+        return f'<p style="background-color:{background}; color:{color}; padding:20px; border-radius:10px; margin-top:{margin_top}; margin-bottom:{margin_bottom}; font-size:{font_size};">{text}</p>'
 
     st.markdown(styled_text(f"🎉 Trivia Completed! Your total score: {correct_answers}/{len(selected_songs) * 2}", margin_top="1px", margin_bottom="1px"), unsafe_allow_html=True)
 
@@ -248,7 +248,7 @@ if submit_all:
     st.markdown("\n### Review of your answers:")
 
     # Function to style text with a black background
-    def styled_text(text, font_size = "20px", font_weight = "bold", color="white", padding = "60px", background="rgba(0, 0, 0, 0.93)", margin_top="-50px", margin_bottom="-50px"):
+    def styled_text(text, font_size = "20px", font_weight = "bold", color="white", padding = "30px", background="rgba(0, 0, 0, 0.93)", margin_top="-50px", margin_bottom="-50px"):
         return f"""
         <div style="
             font-size: {font_size};
