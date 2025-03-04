@@ -5,7 +5,7 @@ from rapidfuzz import fuzz
 import streamlit as st
 
 # Set the working directory
-base_dir = "C:/Users/callu/Desktop/Random/PythonTriviaProject"
+base_dir = "https://github.com/CallumBotha/MTMadness80s/tree/main"
 input_folder = os.path.join(base_dir, 'Question1')
 output_folder = os.path.join(input_folder, 'Question1Trimmed')
 os.makedirs(output_folder, exist_ok=True)
