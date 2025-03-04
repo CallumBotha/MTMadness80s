@@ -1,24 +1,14 @@
 import requests
-import os
-from rapidfuzz import fuzz
+import random
 import streamlit as st
 
 # GitHub repository URL for the directory
 repo_url = "https://api.github.com/repos/CallumBotha/MTMadness80s/contents/Question1"
 
-# Set the Streamlit page configuration
-st.set_page_config(
-    page_title="Music Trivia Madness",
-    layout="wide",
-    page_icon="🎵",
-    initial_sidebar_state="collapsed"
-)
-
 # Function to get files from the GitHub repository
 def get_file_list(url):
     response = requests.get(url)
     if response.status_code == 200:
-        # Parse the JSON response and extract file names
         files = response.json()
         return [file['name'] for file in files if file['name'].endswith('.mp3')]
     else:
@@ -44,6 +34,14 @@ for filename in file_list:
         'full_file': original_file_url,
         'trimmed_file': trimmed_file_url
     })
+
+# Check if music_data has content before sampling
+if music_data:
+    # Select 5 random songs from the list
+    st.session_state.selected_songs = random.sample(music_data, 5)
+    st.write(st.session_state.selected_songs)
+else:
+    st.warning("No songs available to select.")
 
 background_url = "https://i.ibb.co/bRH8S1fr/A-seamless-sticker-bomb-collage-inspired-by-80s-music-culture-designed-like-retro-gift-wrap-Features.jpg"
 # Custom CSS for styling
