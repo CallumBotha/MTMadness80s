@@ -8,7 +8,6 @@ import streamlit as st
 base_dir = "https://github.com/CallumBotha/MTMadness80s/tree/main"
 input_folder = "https://github.com/CallumBotha/MTMadness80s/tree/main/Question1"
 output_folder = "https://github.com/CallumBotha/MTMadness80s/tree/main/Question1/Question1Trimmed"
-os.makedirs(output_folder, exist_ok=True)
 
 # Set FFmpeg path
 # AudioSegment.converter = "C:/Users/callu/Desktop/ffmpeg/bin/ffmpeg.exe"
