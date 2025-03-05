@@ -239,7 +239,7 @@ if submit_all:
     def styled_text(text, color="white", background="rgba(0, 0, 0, 0.93)", margin_top="1px", margin_bottom="-100px", font_size="36px"):
         return f'<p style="background-color:{background}; color:{color}; padding:20px; border-radius:10px; margin-top:{margin_top}; margin-bottom:{margin_bottom}; font-size:{font_size};">{text}</p>'
 
-    st.markdown(styled_text(f"🎉 Trivia Completed! Your total score: {correct_answers}/{len(selected_songs) * 2}", margin_top="1px", margin_bottom="1px",font_size="2px"), unsafe_allow_html=True)
+    st.markdown(styled_text(f"🎉 Trivia Completed! Your total score: {correct_answers}/{len(selected_songs) * 2}", margin_top="1px", margin_bottom="1px",font_size="35px"), unsafe_allow_html=True)
 
 
     # Mark game as completed
