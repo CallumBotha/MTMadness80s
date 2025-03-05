@@ -264,7 +264,7 @@ if submit_all:
            {text}
         </div>
         """
-#    def styled_text(text, color="white", background="rgba(0, 0, 0, 0.93)", margin_top="-50px", margin_bottom="-250px"):
+#    def styled_text(text, color="white", background="rgba(0, 0, 0, 0.93)", margin_top="-50px", margin_bottom="-50px"):
  #       return f'<p style="background-color:{background}; color:{color}; padding:200px; border-radius:5px; margin-top:{margin_top}; margin-bottom:{margin_bottom};">{text}</p>'
 
     # Review answers & provide full song playback buttons after both artist and song name answers are given
