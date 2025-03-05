@@ -125,7 +125,7 @@ st.markdown(
 st.markdown(
     """
     <div style="text-align: center;">
-        <h1 style="font-size: 36px; font-weight: bold; color: white; 
+        <h1 style="font-size: 35px; font-weight: bold; color: white; 
                   background-color: rgba(0, 0, 0, 0.5); padding: 20px; 
                   border-radius: 10px; display: inline-block;">
             🎵 Music Trivia Madness: 80s Edition! 🎵
