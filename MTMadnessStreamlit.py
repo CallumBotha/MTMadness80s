@@ -24,7 +24,7 @@ music_data = []
 
 for filename in file_list:
     song_name = filename.split('.')[0]  # Extract song name from filename
-    artist_name = "Unknown"  # Replace with actual extraction logic if needed
+    artist_name = "UUUUnknown"  # Replace with actual extraction logic if needed
 
     original_file_url = f"https://raw.githubusercontent.com/CallumBotha/MTMadness80s/main/Question1/{filename}"
     trimmed_file_url = f"https://raw.githubusercontent.com/CallumBotha/MTMadness80s/main/Question1/Question1Trimmed/{filename}"
@@ -298,7 +298,7 @@ if submit_all:
             """      
         # Determine the status of the answer
         if song_correct and artist_correct:
-            st.markdown(styled_text(f" Question {idx + 1}: Correct! âœ”ï¸ Your answer: {user_answer}"), unsafe_allow_html=True)
+            st.markdown(styled_text(f" Question {idx + 1}: Correct! ✔️ Your answer: {user_answer}"), unsafe_allow_html=True)
         elif song_correct or artist_correct:
             st.markdown(styled_text(f" Question {idx + 1}: Half Correct! ⚠️ You got either the artist or song name correct."), unsafe_allow_html=True)
             if song_correct:
