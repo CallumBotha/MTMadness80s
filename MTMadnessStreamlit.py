@@ -127,7 +127,7 @@ st.markdown(
         <h1 style="font-size: 40px; font-weight: bold; color: white; 
                   background-color: rgba(0, 0, 0, 0.5); padding: 20px; 
                   border-radius: 10px; display: inline-block;">
-            ðŸŽµ Music Trivia Madness: 80s Edition! ðŸŽµ
+            🎵 Music Trivia Madness: 80s Edition! 🎵
         </h1>
     </div>
     """,
@@ -300,14 +300,14 @@ if submit_all:
         if song_correct and artist_correct:
             st.markdown(styled_text(f" Question {idx + 1}: Correct! âœ”ï¸ Your answer: {user_answer}"), unsafe_allow_html=True)
         elif song_correct or artist_correct:
-            st.markdown(styled_text(f" Question {idx + 1}: Half Correct! ⚠️¸ You got either the artist or song name correct."), unsafe_allow_html=True)
+            st.markdown(styled_text(f" Question {idx + 1}: Half Correct! ⚠️ You got either the artist or song name correct."), unsafe_allow_html=True)
             if song_correct:
-                st.markdown(styled_text(f" You got the song name correct ✔️¸: {your_song or 'No song given'}"), unsafe_allow_html=True)
+                st.markdown(styled_text(f" You got the song name correct ✔️: {your_song or 'No song given'}"), unsafe_allow_html=True)
             else:
                 st.markdown(styled_text(f" You got the song name incorrect ❌: {your_song or 'No song given'}"), unsafe_allow_html=True)
 
             if artist_correct:
-                st.markdown(styled_text(f" You got the artist correct ✔️¸: {your_artist}"), unsafe_allow_html=True)
+                st.markdown(styled_text(f" You got the artist correct ✔️: {your_artist}"), unsafe_allow_html=True)
             else:
                 st.markdown(styled_text(f" You got the artist name incorrect ❌ : {your_artist or 'No artist given'}"), unsafe_allow_html=True)
 
