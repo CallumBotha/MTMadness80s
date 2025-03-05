@@ -38,7 +38,7 @@ for filename in file_list:
     })
 
 
-background_url = "https://github.com/CallumBotha/MTMadness80s/blob/main/MTMadness80sPicture.jpg"
+background_url = "https://github.com/CallumBotha/MTMadness80s/blob/main/MTMadness80sPicture.jpeg?raw=true"
 # Custom CSS for styling
 # Custom CSS for styling, including hiding anchor tags
 st.markdown(
