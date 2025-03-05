@@ -238,7 +238,7 @@ if submit_all:
     def styled_text(text, color="white", background="rgba(0, 0, 0, 0.93)", margin_top="1px", margin_bottom="-100px", font_size="40px"):
         return f'<p style="background-color:{background}; color:{color}; padding:20px; border-radius:10px; margin-top:{margin_top}; margin-bottom:{margin_bottom}; font-size:{font_size};">{text}</p>'
 
-    st.markdown(styled_text(f"ðŸŽ‰ Trivia Completed! Your total score: {correct_answers}/{len(selected_songs) * 2}", margin_top="1px", margin_bottom="1px"), unsafe_allow_html=True)
+    st.markdown(styled_text(f"🎉 Trivia Completed! Your total score: {correct_answers}/{len(selected_songs) * 2}", margin_top="1px", margin_bottom="1px"), unsafe_allow_html=True)
 
 
     # Mark game as completed
@@ -300,16 +300,16 @@ if submit_all:
         if song_correct and artist_correct:
             st.markdown(styled_text(f" Question {idx + 1}: Correct! âœ”ï¸ Your answer: {user_answer}"), unsafe_allow_html=True)
         elif song_correct or artist_correct:
-            st.markdown(styled_text(f" Question {idx + 1}: Half Correct! âš ï¸ You got either the artist or song name correct."), unsafe_allow_html=True)
+            st.markdown(styled_text(f" Question {idx + 1}: Half Correct! ⚠️¸ You got either the artist or song name correct."), unsafe_allow_html=True)
             if song_correct:
-                st.markdown(styled_text(f" You got the song name correct âœ”ï¸: {your_song or 'No song given'}"), unsafe_allow_html=True)
+                st.markdown(styled_text(f" You got the song name correct ✔️¸: {your_song or 'No song given'}"), unsafe_allow_html=True)
             else:
-                st.markdown(styled_text(f" You got the song name incorrect âŒ: {your_song or 'No song given'}"), unsafe_allow_html=True)
+                st.markdown(styled_text(f" You got the song name incorrect ❌: {your_song or 'No song given'}"), unsafe_allow_html=True)
 
             if artist_correct:
-                st.markdown(styled_text(f" You got the artist correct âœ”ï¸: {your_artist}"), unsafe_allow_html=True)
+                st.markdown(styled_text(f" You got the artist correct ✔️¸: {your_artist}"), unsafe_allow_html=True)
             else:
-                st.markdown(styled_text(f" You got the artist name incorrect âŒ : {your_artist or 'No artist given'}"), unsafe_allow_html=True)
+                st.markdown(styled_text(f" You got the artist name incorrect ❌ : {your_artist or 'No artist given'}"), unsafe_allow_html=True)
 
         # Formatting for when both answers are incorrect
         else:
@@ -321,7 +321,7 @@ if submit_all:
             elif not your_song:
                 user_answer = f"{your_artist} - No song given" # Artist first
 
-            st.markdown(styled_text(f" Question {idx + 1}: Incorrect âŒ Your answer: {user_answer}"), unsafe_allow_html=True)
+            st.markdown(styled_text(f" Question {idx + 1}: Incorrect ❌ Your answer: {user_answer}"), unsafe_allow_html=True)
 
         # Provide the full song for every answer, correct or incorrect
         st.markdown(f"###### Correct answer: {selected_songs[idx]['song']} - {selected_songs[idx]['artist']}")  # Song - Artist
