@@ -124,17 +124,15 @@ st.markdown(
 st.markdown(
     """
     <div style="text-align: center;">
-        <h1 style="font-size: 40px; font-weight: bold; color: white; 
-                  background-color: rgba(0, 0, 0, 0.5); padding: 20px; 
+        <h1 style="font-size: 40px; font-weight: bold; color: white;
+                  background-color: rgba(0, 0, 0, 0.5); padding: 20px;
                   border-radius: 10px; display: inline-block;">
-            ðŸŽµ Music Trivia Madness: 80s Edition! ðŸŽµ
+            🎵 Music Trivia Madness: 80s Edition! 🎵
         </h1>
     </div>
     """,
     unsafe_allow_html=True
 )
-
-
 
 # Initialize session state variables
 if 'selected_songs' not in st.session_state:
@@ -214,22 +212,22 @@ if submit_all:
             similarity = fuzz.ratio(user_input.lower(), correct_answer.lower())
             return similarity >= SIMILARITY_THRESHOLD
 
-        if is_close_enough(answer['song'], answer['correct_song']):
-            correct_answers += 1
-            response['song_correct'] = True
-        else:
-            response['song_correct'] = False
-            response['correct_song'] = answer['correct_song']
-            response['your_song'] = answer['song']
+        song_correct = is_close_enough(answer['song'], answer['correct_song'])
+        artist_correct = is_close_enough(answer['artist'], answer['correct_artist'])
 
-        # Check the artist answer
-        if is_close_enough(answer['artist'], answer['correct_artist']):
+        if song_correct:
             correct_answers += 1
-            response['artist_correct'] = True
-        else:
-            response['artist_correct'] = False
-            response['correct_artist'] = answer['correct_artist']
-            response['your_artist'] = answer['artist']
+
+        if artist_correct:
+            correct_answers += 1
+
+        response['song_correct'] = song_correct
+        response['artist_correct'] = artist_correct
+
+        response['correct_song'] = answer['correct_song']
+        response['your_song'] = answer['song']
+        response['correct_artist'] = answer['correct_artist']
+        response['your_artist'] = answer['artist']
 
         response['full_file'] = answer['full_file']  # Include the full song file path
         responses.append(response)
@@ -238,7 +236,7 @@ if submit_all:
     def styled_text(text, color="white", background="rgba(0, 0, 0, 0.93)", margin_top="1px", margin_bottom="-100px", font_size="40px"):
         return f'<p style="background-color:{background}; color:{color}; padding:20px; border-radius:10px; margin-top:{margin_top}; margin-bottom:{margin_bottom}; font-size:{font_size};">{text}</p>'
 
-    st.markdown(styled_text(f"ðŸŽ‰ Trivia Completed! Your total score: {correct_answers}/{len(selected_songs) * 2}", margin_top="1px", margin_bottom="1px"), unsafe_allow_html=True)
+    st.markdown(styled_text(f"🎉 Trivia Completed! Your total score: {correct_answers}/{len(selected_songs) * 2}", margin_top="1px", margin_bottom="1px"), unsafe_allow_html=True)
 
 
     # Mark game as completed
@@ -263,8 +261,6 @@ if submit_all:
            {text}
         </div>
         """
-#    def styled_text(text, color="white", background="rgba(0, 0, 0, 0.93)", margin_top="-50px", margin_bottom="-50px"):
- #       return f'<p style="background-color:{background}; color:{color}; padding:200px; border-radius:5px; margin-top:{margin_top}; margin-bottom:{margin_bottom};">{text}</p>'
 
     # Review answers & provide full song playback buttons after both artist and song name answers are given
     for idx, response in enumerate(responses):
@@ -280,36 +276,21 @@ if submit_all:
 
         # Construct user's combined answer for fully correct and incorrect answers
         user_answer = f"{your_song} - {your_artist}"  # Song - Artist
-        # Example of a styled text function with customizable font size
-        def styled_text(text, font_size="20px", margin_top="-20px", margin_bottom="-30px", padding = "20px", color="white"):
-            return f"""
-            <div style="
-                font-size: {font_size};
-                color: {color};
-                text-align: left;
-                background: rgba(0, 0, 0, 0.93);
-                padding: {padding};
-                border-radius: 10px;
-                margin-top: {margin_top};
-                margin-bottom: {margin_bottom};
-            ">
-               {text}
-            </div>
-            """      
+
         # Determine the status of the answer
         if song_correct and artist_correct:
-            st.markdown(styled_text(f" Question {idx + 1}: Correct! âœ”ï¸ Your answer: {user_answer}"), unsafe_allow_html=True)
+            st.markdown(styled_text(f" Question {idx + 1}: Correct! ✔️ Your answer: {user_answer}"), unsafe_allow_html=True)
         elif song_correct or artist_correct:
-            st.markdown(styled_text(f" Question {idx + 1}: Half Correct! âš ï¸ You got either the artist or song name correct."), unsafe_allow_html=True)
+            st.markdown(styled_text(f" Question {idx + 1}: Half Correct! ⚠️ You got either the artist or song name correct."), unsafe_allow_html=True)
             if song_correct:
-                st.markdown(styled_text(f" You got the song name correct âœ”ï¸: {your_song or 'No song given'}"), unsafe_allow_html=True)
+                st.markdown(styled_text(f" You got the song name correct ✔️: {your_song or 'No song given'}"), unsafe_allow_html=True)
             else:
-                st.markdown(styled_text(f" You got the song name incorrect âŒ: {your_song or 'No song given'}"), unsafe_allow_html=True)
+                st.markdown(styled_text(f" You got the song name incorrect ❌: {your_song or 'No song given'}"), unsafe_allow_html=True)
 
             if artist_correct:
-                st.markdown(styled_text(f" You got the artist correct âœ”ï¸: {your_artist}"), unsafe_allow_html=True)
+                st.markdown(styled_text(f" You got the artist correct ✔️: {your_artist}"), unsafe_allow_html=True)
             else:
-                st.markdown(styled_text(f" You got the artist name incorrect âŒ : {your_artist or 'No artist given'}"), unsafe_allow_html=True)
+                st.markdown(styled_text(f" You got the artist name incorrect ❌ : {your_artist or 'No artist given'}"), unsafe_allow_html=True)
 
         # Formatting for when both answers are incorrect
         else:
@@ -321,10 +302,9 @@ if submit_all:
             elif not your_song:
                 user_answer = f"{your_artist} - No song given" # Artist first
 
-            st.markdown(styled_text(f" Question {idx + 1}: Incorrect âŒ Your answer: {user_answer}"), unsafe_allow_html=True)
+            st.markdown(styled_text(f" Question {idx + 1}: Incorrect ❌ Your answer: {user_answer}"), unsafe_allow_html=True)
 
         # Provide the full song for every answer, correct or incorrect
-        st.markdown(f"###### Correct answer: {selected_songs[idx]['song']} - {selected_songs[idx]['artist']}")  # Song - Artist
         full_song_file = response.get('full_file')
 
         # Check if full song file is present before displaying
@@ -332,9 +312,6 @@ if submit_all:
             st.audio(full_song_file)
         else:
             st.markdown("Full song not available.")
-
-
-
 
 # Function to reset game state
 def reset_game():
@@ -352,4 +329,3 @@ def reset_game():
 if st.session_state.game_completed:
     if st.button("Reset Game"):
         reset_game()
-
