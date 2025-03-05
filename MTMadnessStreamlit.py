@@ -38,7 +38,7 @@ for filename in file_list:
     })
 
 
-background_url = "https://i.ibb.co/bRH8S1fr/A-seamless-sticker-bomb-collage-inspired-by-80s-music-culture-designed-like-retro-gift-wrap-Features.jpg"
+background_url = "https://github.com/CallumBotha/MTMadness80s/blob/main/MTMadness80sPicture.jpeg"
 # Custom CSS for styling
 # Custom CSS for styling, including hiding anchor tags
 st.markdown(
