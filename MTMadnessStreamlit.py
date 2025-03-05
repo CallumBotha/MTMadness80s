@@ -344,7 +344,7 @@ def reset_game():
         del st.session_state[key]
 
     st.session_state.game_completed = False
-    st.session_state.selected_songs = random.sample(music_data, 5)
+    st.session_state.selected_songs = random.sample(music_data, 8)
     st.session_state.user_answers = [{} for _ in range(len(st.session_state.selected_songs))]
 
     st.rerun()
