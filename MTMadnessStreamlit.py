@@ -24,7 +24,7 @@ music_data = []
 
 for filename in file_list:
     song_name = filename.split('.')[0]  # Extract song name from filename
-    artist_name = "UUUUnknown"  # Replace with actual extraction logic if needed
+    artist_name = "filename.split('.')[1]"  # Replace with actual extraction logic if needed
 
     original_file_url = f"https://raw.githubusercontent.com/CallumBotha/MTMadness80s/main/Question1/{filename}"
     trimmed_file_url = f"https://raw.githubusercontent.com/CallumBotha/MTMadness80s/main/Question1/Question1Trimmed/{filename}"
