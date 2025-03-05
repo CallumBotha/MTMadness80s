@@ -247,7 +247,7 @@ if submit_all:
     st.markdown("\n### Review of your answers:")
 
     # Function to style text with a black background
-    def styled_text(text, font_size = "20px", font_weight = "bold", color="white", padding = "30px", background="rgba(0, 0, 0, 0.93)", margin_top="-50px", margin_bottom="-150px"):
+    def styled_text(text, font_size = "20px", font_weight = "bold", color="white", padding = "30px", background="rgba(0, 0, 0, 0.93)", margin_top="-50px", margin_bottom="-50px"):
         return f"""
         <div style="
             font-size: {font_size};
@@ -264,7 +264,7 @@ if submit_all:
            {text}
         </div>
         """
-#    def styled_text(text, color="white", background="rgba(0, 0, 0, 0.93)", margin_top="-50px", margin_bottom="-50px"):
+#    def styled_text(text, color="white", background="rgba(0, 0, 0, 0.93)", margin_top="-50px", margin_bottom="-250px"):
  #       return f'<p style="background-color:{background}; color:{color}; padding:200px; border-radius:5px; margin-top:{margin_top}; margin-bottom:{margin_bottom};">{text}</p>'
 
     # Review answers & provide full song playback buttons after both artist and song name answers are given
