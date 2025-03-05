@@ -139,7 +139,7 @@ st.markdown(
 
 # Initialize session state variables
 if 'selected_songs' not in st.session_state:
-    st.session_state.selected_songs = random.sample(music_data, 5)
+    st.session_state.selected_songs = random.sample(music_data, 8)
 if 'user_answers' not in st.session_state:
     st.session_state.user_answers = [{} for _ in range(len(st.session_state.selected_songs))]
 if 'game_completed' not in st.session_state:
