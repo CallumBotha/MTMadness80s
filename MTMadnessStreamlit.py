@@ -125,7 +125,7 @@ st.markdown(
 st.markdown(
     """
     <div style="text-align: center;">
-        <h1 style="font-size: 35px; font-weight: bold; color: white; 
+        <h1 style="font-size: 38px; font-weight: bold; color: white; 
                   background-color: rgba(0, 0, 0, 0.5); padding: 20px; 
                   border-radius: 10px; display: inline-block;">
             🎵 Music Trivia Madness: 80s Edition! 🎵
@@ -236,7 +236,7 @@ if submit_all:
         responses.append(response)
 
     # Display final score
-    def styled_text(text, color="white", background="rgba(0, 0, 0, 0.93)", margin_top="1px", margin_bottom="-100px", font_size="40px"):
+    def styled_text(text, color="white", background="rgba(0, 0, 0, 0.93)", margin_top="1px", margin_bottom="-100px", font_size="38px"):
         return f'<p style="background-color:{background}; color:{color}; padding:20px; border-radius:10px; margin-top:{margin_top}; margin-bottom:{margin_bottom}; font-size:{font_size};">{text}</p>'
 
     st.markdown(styled_text(f"🎉 Trivia Completed! Your total score: {correct_answers}/{len(selected_songs) * 2}", margin_top="1px", margin_bottom="1px"), unsafe_allow_html=True)
